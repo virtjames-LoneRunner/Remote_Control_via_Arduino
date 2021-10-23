@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote</title>
+
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body style="background-color:white;">
+    <div style="background-color: gray; margin-top: 5%; margin-left: 10%; margin-right: 10%; padding-left:8%; padding-right:5%;">
+        <div class="row pt-2">
+            <div class="col-4">
+                <button class='btn btn-primary disabled rounded-pill' onclick=command('power')>Power</button>
+            </div>
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill' onclick=command('mute')>Mute</button>
+            </div>
+        </div>
+        <div class="row pl-3">
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('1')>1</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2 disabled' onclick=command('2')>2</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2 disabled' onclick=command('3')>3</button>
+            </div>
+        </div>
+        <div class="row pl-3">
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('4')>4</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('5')>5</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2 disabled' onclick=command('6')>6</button>
+            </div>
+        </div>
+        <div class="row pl-3">
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('7')>7</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('8')>8</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('9')>9</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('menu')>Menu</button>
+            </div>
+            <div class="col-4 pl-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('0')>0</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('setup')>Setup</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('back')>Back</button>
+            </div>
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('exit')>Exit</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('up')>Up</button>
+            </div>
+            <div class="col-4">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('left')>Left</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('ok')>OK</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('right')>Right</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('down')>Down</button>
+            </div>
+            <div class="col-4">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('info')>Info</button>
+            </div>
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('epg')>EPG</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('volume_up')>Vol +</button>
+            </div>
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('channel_up')>Ch +</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('volume_down')>Vol -</button>
+            </div>
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=command('channel_down')>Ch -</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=channel('discovery')>Discovery</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=channel('fox_movies')>Fox Movies</button>
+            </div>
+            <div class="col-4">
+                <button class='btn btn-primary rounded-pill mt-2' onclick=channel('nat_geo')>Nat Geo</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        function command(command){
+            fetch("/commands/" + command)
+                .then(results => results.json())
+                .then(console.log);
+        }
+
+        function channel(command){
+            fetch("/channel/" + command)
+                .then(results => results.json())
+                .then(console.log);
+        }
+        
+    </script>
+</body>
+</html>
